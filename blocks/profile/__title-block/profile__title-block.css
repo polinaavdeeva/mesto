@@ -1,0 +1,19 @@
+.profile__title-block {
+    display: flex;
+    column-gap: 18px;
+    align-items: center;
+    max-width: 336px;
+}
+
+@media screen and (max-width: 767px) {
+    .profile__title-block {
+        column-gap: 10px;
+    }
+}
+
+@media screen and (max-width: 550px) {
+    .profile__title-block {
+        max-width: 217px;
+        margin-top: 26px;
+    }
+}

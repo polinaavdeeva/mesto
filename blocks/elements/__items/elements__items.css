@@ -1,0 +1,14 @@
+.elements__items {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px 17px;
+    margin: 0;
+    padding: 0;
+}
+
+@media screen and (max-width: 680px) {
+    .elements__items {
+        justify-content: center;
+    }
+}

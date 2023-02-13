@@ -1,0 +1,10 @@
+.elements__title-container {
+    min-height: 79px;
+    background-color: white;
+    color: black;
+    display: flex;
+    padding-left: 21px;
+    padding-right: 21px;
+    justify-content: space-between;
+    align-items: center;
+}

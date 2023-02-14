@@ -15,5 +15,6 @@
     .profile__title-block {
         max-width: 217px;
         margin-top: 26px;
+        margin-left: 25px;
     }
 }

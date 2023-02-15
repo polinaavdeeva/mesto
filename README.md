@@ -13,7 +13,7 @@
 
 **Посмотреть результат**
 
-* [Финальная версия проекта](https://polinaavdeeva.github.io/russian-travel/)
+* [Финальная версия проекта](https://polinaavdeeva.github.io/mesto/)
 
 **Технологии**
 

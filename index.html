@@ -19,11 +19,11 @@
             <div class="profile__info">
                 <div class="profile__title-block">
                     <h1 class="profile__info-title">Жак-Ив Кусто</h1>
-                    <button class="profile__edit-button"></button>
+                    <button class="profile__edit-button" type="button"></button>
                 </div>
                 <p class="profile__info-subtitle">Исследователь океана</p>
             </div>
-            <button class="profile__add-button"></button>
+            <button class="profile__add-button" type="button"></button>
         </section>
         <section class="elements" aria-label="Места">
             <ul class="elements__items">
@@ -31,42 +31,42 @@
                     <img class="elements__image" src="./images/france.jpg" alt="Фото Франции">
                     <div class="elements__title-container">
                         <p class="elements__title">Франция</p>
-                        <button class="elements__like elements__like_active"></button>
+                        <button class="elements__like elements__like_active" type="button"></button>
                     </div>
                 </li>
                 <li class="elements__item">
                     <img class="elements__image" src="./images/italy.jpg" alt="Фото Италии">
                     <div class="elements__title-container">
                         <p class="elements__title">Италия</p>
-                        <button class="elements__like elements__like_active"></button>
+                        <button class="elements__like elements__like_active" type="button"></button>
                     </div>
                 </li>
                 <li class="elements__item">
                     <img class="elements__image" src="./images/japan.jpg" alt="Фото Японии">
                     <div class="elements__title-container">
                         <p class="elements__title">Япония</p>
-                        <button class="elements__like elements__like_active"></button>
+                        <button class="elements__like elements__like_active" type="button"></button>
                     </div>
                 </li>
                 <li class="elements__item">
                     <img class="elements__image" src="./images/usa.jpg" alt="Фото США">
                     <div class="elements__title-container">
                         <p class="elements__title">США</p>
-                        <button class="elements__like elements__like_active"></button>
+                        <button class="elements__like elements__like_active" type="button"></button>
                     </div>
                 </li>
                 <li class="elements__item">
                     <img class="elements__image" src="./images/russia.jpg" alt="Фото России">
                     <div class="elements__title-container">
                         <p class="elements__title">Россия</p>
-                        <button class="elements__like elements__like_active"></button>
+                        <button class="elements__like elements__like_active" type="button"></button>
                     </div>
                 </li>
                 <li class="elements__item">
                     <img class="elements__image" src="./images/great-britan.jpg" alt="Фото Великобритании">
                     <div class="elements__title-container">
                         <p class="elements__title">Великобритания</p>
-                        <button class="elements__like elements__like_active"></button>
+                        <button class="elements__like elements__like_active" type="button"></button>
                     </div>
                 </li>
             </ul>
@@ -75,12 +75,12 @@
     <footer class="footer">&copy; 2023 Mesto Russia</footer>
     <section class="popup">
         <div class="popup__container">
-            <button class="popup__close-button"></button>
-            <form class="popup__form">
+            <button class="popup__close-button" type="button"></button>
+            <form class="popup__form" name="editForm">
                 <h2 class="popup__title">Редактировать профиль</h2>
                 <div class="popup__input-container">
-                    <input type="text" placeholder="Имя" class="popup__text popup__text_type_name">
-                    <input type="text" placeholder="О себе" class="popup__text popup__text_type_about-oneself">
+                    <input type="text" placeholder="Имя" name="userName" class="popup__text popup__text_type_name">
+                    <input type="text" placeholder="О себе" name="aboutUser" class="popup__text popup__text_type_about-oneself">
                 </div>
                 <button type="submit" class="popup__save-button">Сохранить</button>
             </form>

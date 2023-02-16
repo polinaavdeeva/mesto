@@ -1,5 +1,5 @@
 .elements__image {
     max-width: 282px;
-    height: 282px;
+    aspect-ratio: 1/1;
     object-fit: cover;
 }

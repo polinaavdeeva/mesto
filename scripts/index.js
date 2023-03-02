@@ -71,6 +71,10 @@ function createCard(card) {
         event.target.classList.toggle('elements__like_active');
     });
 
+    placeCard.querySelector('.elements__reset-button').addEventListener('click', function(event) {
+        event.target.closest('.elements__item').remove();
+    });
+
     placeContainer.append(placeCard);
 }
 

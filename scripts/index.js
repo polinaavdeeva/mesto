@@ -7,7 +7,33 @@ let jobInput = formElement.querySelector('.popup__about-oneself');
 let profileName = document.querySelector('.profile__info-title');
 let profileInfo = document.querySelector('.profile__info-subtitle');
 let saveButton = formElement.querySelector('.popup__save-button');
+let placeContainer = document.querySelector('.elements__items');
 
+const initialCards = [{
+        name: 'Архыз',
+        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
+    },
+    {
+        name: 'Челябинская область',
+        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
+    },
+    {
+        name: 'Иваново',
+        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
+    },
+    {
+        name: 'Камчатка',
+        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
+    },
+    {
+        name: 'Холмогорский район',
+        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
+    },
+    {
+        name: 'Байкал',
+        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
+    }
+];
 
 function openForm() {
     popup.classList.add('popup_opened');
@@ -32,3 +58,20 @@ function handleFormSubmit(evt) {
 
 
 formElement.addEventListener('submit', handleFormSubmit);
+
+function createCard(card) {
+    const placeCard = document.querySelector('#place-template').content.cloneNode(true);
+    const placeName = placeCard.querySelector('.elements__title');
+    placeName.textContent = card.name;
+
+    const placeImage = placeCard.querySelector('.elements__image');
+    placeImage.setAttribute('src', card.link);
+
+    placeCard.querySelector('.elements__like').addEventListener('click', function(event) {
+        event.target.classList.toggle('elements__like_active');
+    });
+
+    placeContainer.append(placeCard);
+}
+
+initialCards.forEach(createCard);

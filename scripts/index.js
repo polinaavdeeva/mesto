@@ -12,7 +12,7 @@ let profileInfo = document.querySelector('.profile__info-subtitle');
 let saveButton = formElement.querySelector('.popup__save-button');
 let placeContainer = document.querySelector('.elements__items');
 let placeName = document.querySelector('.popup__place-name');
-let placePicture = document.querySelector('.popup__picture-link');
+let placeImage = document.querySelector('.popup__picture-link');
 
 const initialCards = [{
         name: 'Архыз',
@@ -100,3 +100,21 @@ initialCards.forEach(function(item) {
     const card = createCard(item);
     placeContainer.prepend(card);
 });
+
+
+function handleAddFormSubmit(evt) {
+    evt.preventDefault();
+    const placeNameInput = placeName.value;
+    const placePictureInput = placeImage.value;
+    const newCard = {
+        name: placeNameInput,
+        link: placePictureInput
+    }
+
+    console.log(newCard.link)
+    placeContainer.prepend(createCard(newCard));
+    closeForm(addPopup);
+}
+
+const addForm = document.querySelector('.popup__add-form');
+addForm.addEventListener('submit', handleAddFormSubmit);

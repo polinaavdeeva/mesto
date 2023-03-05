@@ -1,6 +1,9 @@
 let popup = document.querySelector('.popup');
+let editPopup = document.querySelector('.popup_type_edit');
+let addPopup = document.querySelector('.popup_type_add');
 let editButton = document.querySelector('.profile__edit-button');
-let closeButton = document.querySelector('.popup__close-button');
+let closeButton = document.querySelectorAll('.popup__close-button');
+let addButton = document.querySelector('.profile__add-button');
 let formElement = popup.querySelector('.popup__form');
 let nameInput = formElement.querySelector('.popup__name');
 let jobInput = formElement.querySelector('.popup__about-oneself');
@@ -8,6 +11,8 @@ let profileName = document.querySelector('.profile__info-title');
 let profileInfo = document.querySelector('.profile__info-subtitle');
 let saveButton = formElement.querySelector('.popup__save-button');
 let placeContainer = document.querySelector('.elements__items');
+let placeName = document.querySelector('.popup__place-name');
+let placePicture = document.querySelector('.popup__picture-link');
 
 const initialCards = [{
         name: 'Архыз',
@@ -35,29 +40,39 @@ const initialCards = [{
     }
 ];
 
-function openForm() {
-    popup.classList.add('popup_opened');
+function openEditForm() {
+    editPopup.classList.add('popup_opened');
     nameInput.value = profileName.textContent;
     jobInput.value = profileInfo.textContent;
 }
 
-editButton.addEventListener('click', openForm);
-
-function closeForm() {
-    popup.classList.remove('popup_opened')
+function openAddForm() {
+    addPopup.classList.add('popup_opened');
 }
 
-closeButton.addEventListener('click', closeForm);
+editButton.addEventListener('click', openEditForm);
+addButton.addEventListener('click', openAddForm);
 
-function handleFormSubmit(evt) {
+function closeForm(popup) {
+    popup.classList.remove('popup_opened');
+}
+
+closeButton.forEach((button) => {
+    let closestPopup = button.closest('.popup');
+    button.addEventListener('click', function() {
+        closeForm(closestPopup);
+    });
+});
+
+function handleEditFormSubmit(evt) {
     evt.preventDefault();
     profileName.textContent = nameInput.value;
     profileInfo.textContent = jobInput.value;
-    closeForm();
+    closeForm(popup);
 }
 
 
-formElement.addEventListener('submit', handleFormSubmit);
+formElement.addEventListener('submit', handleEditFormSubmit);
 
 function createCard(card) {
     const placeCard = document.querySelector('#place-template').content.cloneNode(true);
@@ -67,6 +82,9 @@ function createCard(card) {
     const placeImage = placeCard.querySelector('.elements__image');
     placeImage.setAttribute('src', card.link);
 
+    const placeImageAlt = placeCard.querySelector('.elements__image');
+    placeImageAlt.setAttribute('alt', card.name);
+
     placeCard.querySelector('.elements__like').addEventListener('click', function(event) {
         event.target.classList.toggle('elements__like_active');
     });
@@ -75,7 +93,10 @@ function createCard(card) {
         event.target.closest('.elements__item').remove();
     });
 
-    placeContainer.append(placeCard);
+    return placeCard;
 }
 
-initialCards.forEach(createCard);
+initialCards.forEach(function(item) {
+    const card = createCard(item);
+    placeContainer.prepend(card);
+});

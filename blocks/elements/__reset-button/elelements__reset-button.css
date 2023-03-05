@@ -8,3 +8,8 @@
     top: 20px;
     border: none;
 }
+
+.elements__reset-button:hover {
+    opacity: 0.6;
+    cursor: pointer;
+}

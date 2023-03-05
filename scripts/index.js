@@ -110,8 +110,6 @@ function handleAddFormSubmit(evt) {
         name: placeNameInput,
         link: placePictureInput
     }
-
-    console.log(newCard.link)
     placeContainer.prepend(createCard(newCard));
     closeForm(addPopup);
 }

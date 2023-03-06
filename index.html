@@ -27,6 +27,7 @@
         </section>
         <section class="elements" aria-label="Места">
             <ul class="elements__items">
+<<<<<<< HEAD
                 <li class="elements__item">
                     <img class="elements__image" src="./images/france.jpg" alt="Фото Франции">
                     <div class="elements__title-container">
@@ -69,11 +70,23 @@
                         <button class="elements__like elements__like_active" type="button"></button>
                     </div>
                 </li>
+=======
+                <template id="place-template">
+                    <li class="elements__item">
+                        <button class="elements__reset-button"></button>
+                        <img class="elements__image" src="#" alt="#">
+                        <div class="elements__title-container">
+                            <p class="elements__title"></p>
+                            <button class="elements__like"></button>
+                        </div>
+                    </li>
+                </template>
+>>>>>>> develop
             </ul>
         </section>
     </main>
     <footer class="footer">&copy; 2023 Mesto Russia</footer>
-    <section class="popup">
+    <section class="popup popup_type_edit">
         <div class="popup__container">
             <button class="popup__close-button" type="button"></button>
             <form class="popup__form" name="editForm">
@@ -84,6 +97,26 @@
                 </div>
                 <button type="submit" class="popup__save-button">Сохранить</button>
             </form>
+        </div>
+    </section>
+    <section class="popup popup_type_add">
+        <div class="popup__container">
+            <button class="popup__close-button"></button>
+            <form class="popup__form popup__add-form">
+                <h2 class="popup__title">Новое место</h2>
+                <div class="popup__input-container">
+                    <input type="text" placeholder="Название" class="popup__text popup__place-name">
+                    <input type="text" placeholder="Ссылка на картинку" class="popup__text popup__picture-link">
+                </div>
+                <button type="submit" class="popup__save-button">Создать</button>
+            </form>
+        </div>
+    </section>
+    <section class="popup popup_type_image-zoom">
+        <div class="popup__image-container">
+            <button class="popup__close-button"></button>
+            <img class="popup__image" src="#" alt="#">
+            <p class="popup__description"></p>
         </div>
     </section>
     <script src="./scripts/index.js"></script>

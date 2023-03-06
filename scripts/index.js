@@ -1,19 +1,19 @@
-let popup = document.querySelector('.popup');
-let editPopup = document.querySelector('.popup_type_edit');
-let addPopup = document.querySelector('.popup_type_add');
-let editButton = document.querySelector('.profile__edit-button');
-let closeButton = document.querySelectorAll('.popup__close-button');
-let addButton = document.querySelector('.profile__add-button');
-let formElement = popup.querySelector('.popup__form');
-let nameInput = formElement.querySelector('.popup__name');
-let jobInput = formElement.querySelector('.popup__about-oneself');
-let profileName = document.querySelector('.profile__info-title');
-let profileInfo = document.querySelector('.profile__info-subtitle');
-let saveButton = formElement.querySelector('.popup__save-button');
-let placeContainer = document.querySelector('.elements__items');
-let placeFormName = document.querySelector('.popup__place-name');
-let placeFormImage = document.querySelector('.popup__picture-link');
-let cardImgPopup = document.querySelector('.popup_type_image-zoom')
+const popup = document.querySelector('.popup');
+const editPopup = document.querySelector('.popup_type_edit');
+const addPopup = document.querySelector('.popup_type_add');
+const editButton = document.querySelector('.profile__edit-button');
+const closeButton = document.querySelectorAll('.popup__close-button');
+const addButton = document.querySelector('.profile__add-button');
+const formElement = popup.querySelector('.popup__form');
+const nameInput = formElement.querySelector('.popup__name');
+const jobInput = formElement.querySelector('.popup__about-oneself');
+const profileName = document.querySelector('.profile__info-title');
+const profileInfo = document.querySelector('.profile__info-subtitle');
+const saveButton = formElement.querySelector('.popup__save-button');
+const placeContainer = document.querySelector('.elements__items');
+const placeFormName = document.querySelector('.popup__place-name');
+const placeFormImage = document.querySelector('.popup__picture-link');
+const cardImgPopup = document.querySelector('.popup_type_image-zoom')
 
 const initialCards = [{
         name: 'Архыз',
@@ -63,7 +63,7 @@ function closeForm(popup) {
 }
 
 closeButton.forEach((button) => {
-    let closestPopup = button.closest('.popup');
+    const closestPopup = button.closest('.popup');
     button.addEventListener('click', function() {
         closeForm(closestPopup);
     });

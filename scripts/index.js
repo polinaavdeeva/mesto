@@ -12,6 +12,8 @@ const profileInfo = document.querySelector('.profile__info-subtitle');
 const saveButton = formElement.querySelector('.popup__save-button');
 const placeContainer = document.querySelector('.elements__items');
 const placeFormName = document.querySelector('.popup__place-name');
+const popupImage = document.querySelector('.popup__image');
+const popupDescription = document.querySelector('.popup__description');
 const placeFormImage = document.querySelector('.popup__picture-link');
 const cardImgPopup = document.querySelector('.popup_type_image-zoom')
 
@@ -78,15 +80,17 @@ function handleEditFormSubmit(evt) {
 
 formElement.addEventListener('submit', handleEditFormSubmit);
 
+const placeTemplateCard = document.querySelector('#place-template').content;
+
 function createCard(card) {
-    const placeCard = document.querySelector('#place-template').content.cloneNode(true);
+    const placeCard = placeTemplateCard.querySelector('.elements__item').cloneNode(true);
     const placeName = placeCard.querySelector('.elements__title');
     placeName.textContent = card.name;
 
     const placeImage = placeCard.querySelector('.elements__image');
     placeImage.setAttribute('src', card.link);
 
-    const placeImageAlt = placeCard.querySelector('.elements__image');
+    const placeImageAlt = placeImage;
     placeImageAlt.setAttribute('alt', card.name);
 
     placeCard.querySelector('.elements__like').addEventListener('click', function(event) {
@@ -100,13 +104,9 @@ function createCard(card) {
     placeImage.addEventListener('click', () => {
         openZoomForm();
 
-        const popupImage = document.querySelector('.popup__image');
         popupImage.src = placeImage.src;
         popupImage.alt = placeImage.alt;
-
-        const popupDescription = document.querySelector('.popup__description');
         popupDescription.textContent = placeName.textContent;
-
     });
 
     return placeCard;
@@ -116,7 +116,6 @@ initialCards.forEach(function(item) {
     const card = createCard(item);
     placeContainer.prepend(card);
 });
-
 
 function handleAddFormSubmit(evt) {
     evt.preventDefault();

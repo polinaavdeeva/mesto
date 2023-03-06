@@ -11,8 +11,9 @@ let profileName = document.querySelector('.profile__info-title');
 let profileInfo = document.querySelector('.profile__info-subtitle');
 let saveButton = formElement.querySelector('.popup__save-button');
 let placeContainer = document.querySelector('.elements__items');
-let placeName = document.querySelector('.popup__place-name');
-let placeImage = document.querySelector('.popup__picture-link');
+let placeFormName = document.querySelector('.popup__place-name');
+let placeFormImage = document.querySelector('.popup__picture-link');
+let cardImgPopup = document.querySelector('.popup_type_image-zoom')
 
 const initialCards = [{
         name: 'Архыз',
@@ -50,6 +51,10 @@ function openAddForm() {
     addPopup.classList.add('popup_opened');
 }
 
+function openZoomForm() {
+    cardImgPopup.classList.add('popup_opened');
+}
+
 editButton.addEventListener('click', openEditForm);
 addButton.addEventListener('click', openAddForm);
 
@@ -70,7 +75,6 @@ function handleEditFormSubmit(evt) {
     profileInfo.textContent = jobInput.value;
     closeForm(popup);
 }
-
 
 formElement.addEventListener('submit', handleEditFormSubmit);
 
@@ -93,6 +97,18 @@ function createCard(card) {
         event.target.closest('.elements__item').remove();
     });
 
+    placeImage.addEventListener('click', () => {
+        openZoomForm();
+
+        const popupImage = document.querySelector('.popup__image');
+        popupImage.src = placeImage.src;
+        popupImage.alt = placeImage.alt;
+
+        const popupDescription = document.querySelector('.popup__description');
+        popupDescription.textContent = placeName.textContent;
+
+    });
+
     return placeCard;
 }
 
@@ -104,8 +120,8 @@ initialCards.forEach(function(item) {
 
 function handleAddFormSubmit(evt) {
     evt.preventDefault();
-    const placeNameInput = placeName.value;
-    const placePictureInput = placeImage.value;
+    const placeNameInput = placeFormName.value;
+    const placePictureInput = placeFormImage.value;
     const newCard = {
         name: placeNameInput,
         link: placePictureInput

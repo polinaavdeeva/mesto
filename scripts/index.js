@@ -62,6 +62,7 @@ function openZoomForm() {
 
 function closeForm(popup) {
     popup.classList.remove('popup_opened');
+    addForm.reset();
 }
 
 closeButton.forEach((button) => {
@@ -126,7 +127,6 @@ function handleAddFormSubmit(evt) {
         link: placePictureInput
     }
     placeContainer.prepend(createCard(newCard));
-    addForm.reset();
     closeForm(addPopup);
 }
 

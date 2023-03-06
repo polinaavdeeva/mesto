@@ -51,12 +51,12 @@ function openAddForm() {
     addPopup.classList.add('popup_opened');
 }
 
+editButton.addEventListener('click', openEditForm);
+addButton.addEventListener('click', openAddForm);
+
 function openZoomForm() {
     cardImgPopup.classList.add('popup_opened');
 }
-
-editButton.addEventListener('click', openEditForm);
-addButton.addEventListener('click', openAddForm);
 
 function closeForm(popup) {
     popup.classList.remove('popup_opened');

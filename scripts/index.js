@@ -127,6 +127,7 @@ function handleAddFormSubmit(evt) {
         link: placePictureInput
     }
     placeContainer.prepend(createCard(newCard));
+    addForm.reset();
     closeForm(addPopup);
 }
 

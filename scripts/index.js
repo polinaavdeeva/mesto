@@ -43,12 +43,6 @@ const initialCards = [{
     }
 ];
 
-/*function openEditForm() {
-    editPopup.classList.add('popup_opened');
-    nameInput.value = profileName.textContent;
-    jobInput.value = profileInfo.textContent;
-}*/
-
 function openForm(popup) {
     popup.classList.add('popup_opened');
 }

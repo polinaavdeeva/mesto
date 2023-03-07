@@ -1,10 +1,10 @@
-const popup = document.querySelector('.popup');
+const profilePopup = document.querySelector('.popup');
 const editPopup = document.querySelector('.popup_type_edit');
 const addPopup = document.querySelector('.popup_type_add');
 const editButton = document.querySelector('.profile__edit-button');
 const closeButton = document.querySelectorAll('.popup__close-button');
 const addButton = document.querySelector('.profile__add-button');
-const formElement = popup.querySelector('.popup__form');
+const formElement = profilePopup.querySelector('.popup__form');
 const nameInput = formElement.querySelector('.popup__name');
 const jobInput = formElement.querySelector('.popup__about-oneself');
 const profileName = document.querySelector('.profile__info-title');
@@ -43,22 +43,25 @@ const initialCards = [{
     }
 ];
 
-function openEditForm() {
+/*function openEditForm() {
     editPopup.classList.add('popup_opened');
     nameInput.value = profileName.textContent;
     jobInput.value = profileInfo.textContent;
+}*/
+
+function openForm(popup) {
+    popup.classList.add('popup_opened');
 }
 
-function openAddForm() {
-    addPopup.classList.add('popup_opened');
-}
+editButton.addEventListener('click', () => {
+    openForm(editPopup);
+    nameInput.value = profileName.textContent;
+    jobInput.value = profileInfo.textContent;
+});
 
-editButton.addEventListener('click', openEditForm);
-addButton.addEventListener('click', openAddForm);
-
-function openZoomForm() {
-    cardImgPopup.classList.add('popup_opened');
-}
+addButton.addEventListener('click', () => {
+    openForm(addPopup);
+});
 
 function closeForm(popup) {
     popup.classList.remove('popup_opened');
@@ -76,7 +79,7 @@ function handleEditFormSubmit(evt) {
     evt.preventDefault();
     profileName.textContent = nameInput.value;
     profileInfo.textContent = jobInput.value;
-    closeForm(popup);
+    closeForm(profilePopup);
 }
 
 formElement.addEventListener('submit', handleEditFormSubmit);
@@ -103,7 +106,7 @@ function createCard(card) {
     });
 
     placeImage.addEventListener('click', () => {
-        openZoomForm();
+        openForm(cardImgPopup);
 
         popupImage.src = placeImage.src;
         popupImage.alt = placeImage.alt;

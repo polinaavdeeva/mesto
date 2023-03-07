@@ -6,7 +6,8 @@
     background-repeat: no-repeat;
     width: 150px;
     height: 50px;
-    border: 1px solid white;
+    border: 2px solid #FFFFFF;
+    border-radius: 2px;
 }
 
 .profile__add-button:hover {
@@ -16,9 +17,9 @@
 
 @media screen and (max-width: 767px) {
     .profile__add-button {
-        width: 60px;
-        height: 20px;
-        background-size: 16px 16px;
+        width: 80px;
+        height: 27px;
+        background-size: 10px 10px;
     }
 }
 
@@ -26,6 +27,7 @@
     .profile__add-button {
         width: 282px;
         height: 50px;
+        background-size: 16px 16px;
         margin-left: 0;
     }
 }

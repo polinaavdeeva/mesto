@@ -5,16 +5,16 @@ const editButton = document.querySelector('.profile__edit-button');
 const closeButton = document.querySelectorAll('.popup__close-button');
 const addButton = document.querySelector('.profile__add-button');
 const formElement = profilePopup.querySelector('.popup__form');
-const nameInput = formElement.querySelector('.popup__name');
-const jobInput = formElement.querySelector('.popup__about-oneself');
+const nameInput = formElement.querySelector('.popup__text_type_name');
+const jobInput = formElement.querySelector('.popup__text_type_about-oneself');
 const profileName = document.querySelector('.profile__info-title');
 const profileInfo = document.querySelector('.profile__info-subtitle');
 const saveButton = formElement.querySelector('.popup__save-button');
 const placeContainer = document.querySelector('.elements__items');
 const placeFormName = document.querySelector('.popup__place-name');
+const placeFormImage = document.querySelector('.popup__picture-link');
 const popupImage = document.querySelector('.popup__image');
 const popupDescription = document.querySelector('.popup__description');
-const placeFormImage = document.querySelector('.popup__picture-link');
 const cardImgPopup = document.querySelector('.popup_type_image-zoom')
 
 const initialCards = [{
@@ -54,12 +54,11 @@ editButton.addEventListener('click', () => {
 });
 
 addButton.addEventListener('click', () => {
-    openForm(addPopup);
+    openForm(addPopup)
 });
 
 function closeForm(popup) {
     popup.classList.remove('popup_opened');
-    addForm.reset();
 }
 
 closeButton.forEach((button) => {
@@ -87,9 +86,7 @@ function createCard(card) {
 
     const placeImage = placeCard.querySelector('.elements__image');
     placeImage.setAttribute('src', card.link);
-
-    const placeImageAlt = placeImage;
-    placeImageAlt.setAttribute('alt', card.name);
+    placeImage.setAttribute('alt', card.name);
 
     placeCard.querySelector('.elements__like').addEventListener('click', function(event) {
         event.target.classList.toggle('elements__like_active');
@@ -124,6 +121,7 @@ function handleAddFormSubmit(evt) {
         link: placePictureInput
     }
     placeContainer.prepend(createCard(newCard));
+    addForm.reset();
     closeForm(addPopup);
 }
 

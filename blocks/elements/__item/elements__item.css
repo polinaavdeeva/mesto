@@ -3,7 +3,6 @@
     flex-direction: column;
     position: relative;
     border-radius: 10px;
-    max-height: 362px;
     min-width: 282px;
     overflow: hidden;
 }

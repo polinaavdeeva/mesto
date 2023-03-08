@@ -1,9 +1,9 @@
 const profilePopup = document.querySelector('.popup');
 const editPopup = document.querySelector('.popup_type_edit');
 const addPopup = document.querySelector('.popup_type_add');
-const editButton = document.querySelector('.profile__edit-button');
-const closeButton = document.querySelectorAll('.popup__close-button');
-const addButton = document.querySelector('.profile__add-button');
+const buttonOpenEditProfilePopup = document.querySelector('.profile__edit-button');
+const buttonsClosePopup = document.querySelectorAll('.popup__close-button');
+const buttonOpenAddCardPopup = document.querySelector('.profile__add-button');
 const formElement = profilePopup.querySelector('.popup__form');
 const nameInput = formElement.querySelector('.popup__text_type_name');
 const jobInput = formElement.querySelector('.popup__text_type_about-oneself');
@@ -21,13 +21,13 @@ function openForm(popup) {
     popup.classList.add('popup_opened');
 }
 
-editButton.addEventListener('click', () => {
+buttonOpenEditProfilePopup.addEventListener('click', () => {
     openForm(editPopup);
     nameInput.value = profileName.textContent;
     jobInput.value = profileInfo.textContent;
 });
 
-addButton.addEventListener('click', () => {
+buttonOpenAddCardPopup.addEventListener('click', () => {
     openForm(addPopup)
 });
 
@@ -35,11 +35,11 @@ function closeForm(popup) {
     popup.classList.remove('popup_opened');
 }
 
-closeButton.forEach((button) => {
+buttonsClosePopup.forEach((button) => {
     const closestPopup = button.closest('.popup');
     button.addEventListener('click', function() {
         closeForm(closestPopup);
-        addForm.reset();
+        formAddCard.reset();
     });
 });
 
@@ -96,9 +96,9 @@ function handleAddFormSubmit(evt) {
         link: placePictureInput
     }
     placeContainer.prepend(createCard(newCard));
-    addForm.reset();
+    formAddCard.reset();
     closeForm(addPopup);
 }
 
-const addForm = document.querySelector('.popup__add-form');
-addForm.addEventListener('submit', handleAddFormSubmit);
+const formAddCard = document.querySelector('.popup__add-form');
+formAddCard.addEventListener('submit', handleAddFormSubmit);

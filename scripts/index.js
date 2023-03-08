@@ -39,6 +39,7 @@ closeButton.forEach((button) => {
     const closestPopup = button.closest('.popup');
     button.addEventListener('click', function() {
         closeForm(closestPopup);
+        addForm.reset();
     });
 });
 

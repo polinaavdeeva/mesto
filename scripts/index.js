@@ -1,10 +1,10 @@
-const profilePopup = document.querySelector('.popup');
+const profilePopups = document.querySelectorAll('.popup');
 const editPopup = document.querySelector('.popup_type_edit');
 const addPopup = document.querySelector('.popup_type_add');
 const buttonOpenEditProfilePopup = document.querySelector('.profile__edit-button');
 const buttonsClosePopup = document.querySelectorAll('.popup__close-button');
 const buttonOpenAddCardPopup = document.querySelector('.profile__add-button');
-const formElement = profilePopup.querySelector('.popup__form');
+const formElement = document.querySelector('.popup__form');
 const nameInput = formElement.querySelector('.popup__text_type_name');
 const jobInput = formElement.querySelector('.popup__text_type_about-oneself');
 const profileName = document.querySelector('.profile__info-title');
@@ -19,6 +19,7 @@ const cardImgPopup = document.querySelector('.popup_type_image-zoom')
 
 function openForm(popup) {
     popup.classList.add('popup_opened');
+    document.addEventListener('keydown', closePopupByEsc);
 }
 
 buttonOpenEditProfilePopup.addEventListener('click', () => {
@@ -33,13 +34,30 @@ buttonOpenAddCardPopup.addEventListener('click', () => {
 
 function closeForm(popup) {
     popup.classList.remove('popup_opened');
-}
+    document.removeEventListener('keydown', closePopupByEsc);
+    formAddCard.reset();
+};
+
+function closePopupByEsc(evt) {
+    if (evt.key === 'Escape') {
+        profilePopups.forEach((closestPopup) => {
+            closeForm(closestPopup);
+        });
+    }
+};
 
 buttonsClosePopup.forEach((button) => {
     const closestPopup = button.closest('.popup');
     button.addEventListener('click', function() {
         closeForm(closestPopup);
-        formAddCard.reset();
+    });
+});
+
+profilePopups.forEach((popup) => {
+    popup.addEventListener('mousedown', (evt) => {
+        if (evt.target.classList.contains('popup_opened')) {
+            closeForm(popup);
+        };
     });
 });
 
@@ -47,7 +65,7 @@ function handleEditFormSubmit(evt) {
     evt.preventDefault();
     profileName.textContent = nameInput.value;
     profileInfo.textContent = jobInput.value;
-    closeForm(profilePopup);
+    closeForm(editPopup);
 }
 
 formElement.addEventListener('submit', handleEditFormSubmit);

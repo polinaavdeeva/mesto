@@ -26,10 +26,12 @@ buttonOpenEditProfilePopup.addEventListener('click', () => {
     openForm(editPopup);
     nameInput.value = profileName.textContent;
     jobInput.value = profileInfo.textContent;
+    setDisabledButton(enableValidationForm);
 });
 
 buttonOpenAddCardPopup.addEventListener('click', () => {
     openForm(addPopup);
+    setDisabledButton(enableValidationForm);
 });
 
 function closeForm(popup) {

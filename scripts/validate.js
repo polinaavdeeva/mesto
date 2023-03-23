@@ -21,6 +21,15 @@ function cleanErrors(form) {
     });
 };
 
+function setDisabledButton(form) {
+    const submitButtonList = Array.from(document.querySelectorAll(form.submitButtonSelector));
+
+    submitButtonList.forEach((button) => {
+        button.setAttribute('disables', true);
+        button.classList.add(enableValidationForm.inactiveButtonClass);
+    });
+};
+
 //пробегаемся по кажддой форме, если их несколько и навешиваем слушатели
 function enableValidation(form) {
     const formList = Array.from(document.querySelectorAll(form.formSelector));
@@ -31,7 +40,7 @@ function enableValidation(form) {
 
 function setEventListeners(formElement, form) {
     const inputList = Array.from(formElement.querySelectorAll(form.inputSelector));
-    const buttonElement = formElement.querySelector(form.submitButtonSelector)
+    const buttonElement = formElement.querySelector(form.submitButtonSelector);
 
     toggleButtonState(inputList, buttonElement, form);
 

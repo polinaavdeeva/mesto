@@ -4,7 +4,9 @@
     line-height: 17px;
     border: 0;
     border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+    outline: none;
     padding: 0 0 13px;
+    margin-bottom: 5px;
 }
 
 .popup__text::placeholder {

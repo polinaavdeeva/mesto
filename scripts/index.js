@@ -36,14 +36,12 @@ buttonOpenAddCardPopup.addEventListener('click', () => {
 function closeForm(popup) {
     popup.classList.remove('popup_opened');
     document.removeEventListener('keydown', closePopupByEsc);
-    formAddCard.reset();
 };
 
 function closePopupByEsc(evt) {
     if (evt.key === 'Escape') {
-        popupsList.forEach((closestPopup) => {
-            closeForm(closestPopup);
-        });
+        const openedPopup = document.querySelector('.popup_opened');
+        closeForm(openedPopup);
     }
 };
 
@@ -52,6 +50,7 @@ buttonsClosePopup.forEach((button) => {
     button.addEventListener('click', function() {
         closeForm(closestPopup);
         cleanErrors(enableValidationForm);
+        formAddCard.reset();
     });
 });
 
@@ -60,6 +59,7 @@ popupsList.forEach((popup) => {
         if (evt.target.classList.contains('popup_opened')) {
             closeForm(popup);
             cleanErrors(enableValidationForm);
+            formAddCard.reset();
         };
     });
 });

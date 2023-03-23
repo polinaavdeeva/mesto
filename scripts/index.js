@@ -26,11 +26,13 @@ buttonOpenEditProfilePopup.addEventListener('click', () => {
     nameInput.value = profileName.textContent;
     jobInput.value = profileInfo.textContent;
     setDisabledButton(enableValidationForm);
+    cleanErrors(enableValidationForm);
 });
 
 buttonOpenAddCardPopup.addEventListener('click', () => {
     openPopup(addPopup);
     setDisabledButton(enableValidationForm);
+    cleanErrors(enableValidationForm);
 });
 
 function closeForm(popup) {
@@ -49,7 +51,6 @@ buttonsClosePopup.forEach((button) => {
     const closestPopup = button.closest('.popup');
     button.addEventListener('click', function() {
         closeForm(closestPopup);
-        cleanErrors(enableValidationForm);
         formAddCard.reset();
     });
 });
@@ -58,7 +59,6 @@ popupsList.forEach((popup) => {
     popup.addEventListener('mousedown', (evt) => {
         if (evt.target.classList.contains('popup_opened')) {
             closeForm(popup);
-            cleanErrors(enableValidationForm);
             formAddCard.reset();
         };
     });
@@ -95,9 +95,9 @@ function createCard(card) {
     placeImage.addEventListener('click', () => {
         openPopup(cardImgPopup);
 
-        popupImage.src = placeImage.src;
-        popupImage.alt = placeImage.alt;
-        popupDescription.textContent = placeName.textContent;
+        popupImage.src = card.link;
+        popupImage.alt = card.name;
+        popupDescription.textContent = card.name;
     });
 
     return placeCard;

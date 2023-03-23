@@ -46,24 +46,11 @@ function closePopupByEsc(evt) {
     }
 };
 
-function cleanErrors() {
-    const inputErrorList = Array.from(document.querySelectorAll('.popup__text-error'));
-    const inputList = Array.from(document.querySelectorAll('.popup__text'));
-
-    inputErrorList.forEach((inputError) => {
-        inputError.textContent = '';
-    });
-
-    inputList.forEach((input) => {
-        input.classList.remove('popup__text_type_error');
-    });
-};
-
 buttonsClosePopup.forEach((button) => {
     const closestPopup = button.closest('.popup');
     button.addEventListener('click', function() {
         closeForm(closestPopup);
-        cleanErrors();
+        cleanErrors(enableValidationForm);
     });
 });
 
@@ -71,7 +58,7 @@ profilePopups.forEach((popup) => {
     popup.addEventListener('mousedown', (evt) => {
         if (evt.target.classList.contains('popup_opened')) {
             closeForm(popup);
-            cleanErrors();
+            cleanErrors(enableValidationForm);
         };
     });
 });

@@ -1,11 +1,25 @@
-enableValidation({
+const enableValidationForm = {
     formSelector: '.popup__form',
     inputSelector: '.popup__text',
     submitButtonSelector: '.popup__save-button',
     inactiveButtonClass: 'popup__save-button_disabled',
     inputErrorClass: 'popup__text_type_error',
-    errorClass: 'popup__error_visible'
-});
+    errorClass: 'popup__error_visible',
+    errorTextClass: '.popup__text-error'
+};
+
+function cleanErrors(form) {
+    const inputErrorList = Array.from(document.querySelectorAll(form.errorTextClass));
+    const inputList = Array.from(document.querySelectorAll(form.inputSelector));
+
+    inputErrorList.forEach((inputError) => {
+        inputError.textContent = '';
+    });
+
+    inputList.forEach((input) => {
+        input.classList.remove(form.inputErrorClass);
+    });
+};
 
 //пробегаемся по кажддой форме, если их несколько и навешиваем слушатели
 function enableValidation(form) {
@@ -68,4 +82,4 @@ function hasInvalidInput(inputList) {
     });
 };
 
-enableValidation(enableValidation);
+enableValidation(enableValidationForm);

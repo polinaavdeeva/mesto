@@ -25,7 +25,7 @@ function setDisabledButton(form) {
     const submitButtonList = Array.from(document.querySelectorAll(form.submitButtonSelector));
 
     submitButtonList.forEach((button) => {
-        button.setAttribute('disables', true);
+        button.setAttribute('disabled', true);
         button.classList.add(enableValidationForm.inactiveButtonClass);
     });
 };

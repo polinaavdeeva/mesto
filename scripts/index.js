@@ -30,6 +30,7 @@ buttonOpenEditProfilePopup.addEventListener('click', () => {
 });
 
 buttonOpenAddCardPopup.addEventListener('click', () => {
+    formAddCard.reset();
     openPopup(addPopup);
     setDisabledButton(enableValidationForm);
     cleanErrors(enableValidationForm);
@@ -38,7 +39,6 @@ buttonOpenAddCardPopup.addEventListener('click', () => {
 function closePopup(popup) {
     popup.classList.remove('popup_opened');
     document.removeEventListener('keydown', closePopupByEsc);
-    formAddCard.reset();
 };
 
 function closePopupByEsc(evt) {

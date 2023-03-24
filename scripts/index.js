@@ -35,7 +35,7 @@ buttonOpenAddCardPopup.addEventListener('click', () => {
     cleanErrors(enableValidationForm);
 });
 
-function closeForm(popup) {
+function closePopup(popup) {
     popup.classList.remove('popup_opened');
     document.removeEventListener('keydown', closePopupByEsc);
 };
@@ -43,14 +43,14 @@ function closeForm(popup) {
 function closePopupByEsc(evt) {
     if (evt.key === 'Escape') {
         const openedPopup = document.querySelector('.popup_opened');
-        closeForm(openedPopup);
+        closePopup(openedPopup);
     }
 };
 
 buttonsClosePopup.forEach((button) => {
     const closestPopup = button.closest('.popup');
     button.addEventListener('click', function() {
-        closeForm(closestPopup);
+        closePopup(closestPopup);
         formAddCard.reset();
     });
 });
@@ -58,7 +58,7 @@ buttonsClosePopup.forEach((button) => {
 popupsList.forEach((popup) => {
     popup.addEventListener('mousedown', (evt) => {
         if (evt.target.classList.contains('popup_opened')) {
-            closeForm(popup);
+            closePopup(popup);
             formAddCard.reset();
         };
     });
@@ -68,7 +68,7 @@ function handleEditFormSubmit(evt) {
     evt.preventDefault();
     profileName.textContent = nameInput.value;
     profileInfo.textContent = jobInput.value;
-    closeForm(editPopup);
+    closePopup(editPopup);
 }
 
 formEditProfile.addEventListener('submit', handleEditFormSubmit);
@@ -118,7 +118,7 @@ function handleAddFormSubmit(evt) {
     }
     placeContainer.prepend(createCard(newCard));
     formAddCard.reset();
-    closeForm(addPopup);
+    closePopup(addPopup);
 }
 
 const formAddCard = document.querySelector('.popup__add-form');

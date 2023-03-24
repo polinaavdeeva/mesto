@@ -9,8 +9,9 @@ const enableValidationForm = {
 };
 
 function cleanErrors(validationObj) {
-    const inputErrorList = Array.from(document.querySelectorAll(validationObj.errorTextClass));
-    const inputList = Array.from(document.querySelectorAll(validationObj.inputSelector));
+    const openedPopup = document.querySelector('.popup_opened');
+    const inputErrorList = Array.from(openedPopup.querySelectorAll(validationObj.errorTextClass));
+    const inputList = Array.from(openedPopup.querySelectorAll(validationObj.inputSelector));
 
     inputErrorList.forEach((inputError) => {
         inputError.textContent = '';
@@ -22,12 +23,11 @@ function cleanErrors(validationObj) {
 };
 
 function setDisabledButton(validationObj) {
-    const submitButtonList = Array.from(document.querySelectorAll(validationObj.submitButtonSelector));
+    const openedPopup = document.querySelector('.popup_opened');
+    const submitButton = openedPopup.querySelector(validationObj.submitButtonSelector);
 
-    submitButtonList.forEach((button) => {
-        button.setAttribute('disabled', true);
-        button.classList.add(validationObj.inactiveButtonClass);
-    });
+    submitButton.setAttribute('disabled', true);
+    submitButton.classList.add(validationObj.inactiveButtonClass);
 };
 
 //пробегаемся по кажддой форме, если их несколько и навешиваем слушатели

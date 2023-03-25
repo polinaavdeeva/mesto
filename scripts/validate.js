@@ -1,6 +1,7 @@
 const enableValidationForm = {
     formSelector: '.popup__form',
     inputSelector: '.popup__text',
+    openedPopupClass: '.popup_opened',
     submitButtonSelector: '.popup__save-button',
     inactiveButtonClass: 'popup__save-button_disabled',
     inputErrorClass: 'popup__text_type_error',
@@ -9,7 +10,7 @@ const enableValidationForm = {
 };
 
 function cleanErrors(validationObj) {
-    const openedPopup = document.querySelector('.popup_opened');
+    const openedPopup = document.querySelector(validationObj.openedPopupClass);
     const inputErrorList = Array.from(openedPopup.querySelectorAll(validationObj.errorTextClass));
     const inputList = Array.from(openedPopup.querySelectorAll(validationObj.inputSelector));
 
@@ -23,7 +24,7 @@ function cleanErrors(validationObj) {
 };
 
 function setDisabledButton(validationObj) {
-    const openedPopup = document.querySelector('.popup_opened');
+    const openedPopup = document.querySelector(validationObj.openedPopupClass);
     const submitButton = openedPopup.querySelector(validationObj.submitButtonSelector);
 
     submitButton.setAttribute('disabled', true);

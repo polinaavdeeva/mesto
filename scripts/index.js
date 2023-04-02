@@ -78,7 +78,6 @@ formEditProfile.addEventListener('submit', handleEditFormSubmit);
 
 initialCards.forEach((item) => {
     const card = new Card(item, '#place-template');
-    console.log(card);
     const cardElement = card.generateCard();
     placeContainer.prepend(cardElement);
 });

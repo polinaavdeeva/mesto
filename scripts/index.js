@@ -76,9 +76,9 @@ function handleEditFormSubmit(evt) {
 
 formEditProfile.addEventListener('submit', handleEditFormSubmit);
 
-const placeTemplateCard = document.querySelector('#place-template').content;
+//const placeTemplateCard = document.querySelector('#place-template').content;
 
-function createCard(card) {
+/*function createCard(card) {
     const placeCard = placeTemplateCard.querySelector('.elements__item').cloneNode(true);
     const placeName = placeCard.querySelector('.elements__title');
     placeName.textContent = card.name;
@@ -104,11 +104,13 @@ function createCard(card) {
     });
 
     return placeCard;
-}
+}*/
 
-initialCards.forEach(function(item) {
-    const card = createCard(item);
-    placeContainer.prepend(card);
+initialCards.forEach((item) => {
+    const card = new Card(item, '#place-template');
+    console.log(card);
+    const cardElement = card.generateCard();
+    placeContainer.prepend(cardElement);
 });
 
 function handleAddFormSubmit(evt) {
@@ -119,7 +121,10 @@ function handleAddFormSubmit(evt) {
         name: placeNameInput,
         link: placePictureInput
     }
-    placeContainer.prepend(createCard(newCard));
+
+    const card = new Card(newCard, '#place-template');
+    const cardElement = card.generateCard();
+    placeContainer.prepend(cardElement);
     formAddCard.reset();
     closePopup(addPopup);
 }

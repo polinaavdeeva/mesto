@@ -25,14 +25,18 @@ buttonOpenEditProfilePopup.addEventListener('click', () => {
     openPopup(editPopup);
     nameInput.value = profileName.textContent;
     jobInput.value = profileInfo.textContent;
-    setDisabledButton(enableValidationForm);
-    cleanErrors(enableValidationForm);
+    const validateEditForm = new FormValidator(enableValidationForm, editPopup);
+    validateEditForm.enableValidation();
+    validateEditForm.setDisabledButton();
+    validateEditForm.cleanErrors();
 });
 
 buttonOpenAddCardPopup.addEventListener('click', () => {
     openPopup(addPopup);
-    setDisabledButton(enableValidationForm);
-    cleanErrors(enableValidationForm);
+    const validateAddForm = new FormValidator(enableValidationForm, addPopup);
+    validateAddForm.enableValidation();
+    validateAddForm.setDisabledButton();
+    validateAddForm.cleanErrors();
 });
 
 function closePopup(popup) {

@@ -76,36 +76,6 @@ function handleEditFormSubmit(evt) {
 
 formEditProfile.addEventListener('submit', handleEditFormSubmit);
 
-//const placeTemplateCard = document.querySelector('#place-template').content;
-
-/*function createCard(card) {
-    const placeCard = placeTemplateCard.querySelector('.elements__item').cloneNode(true);
-    const placeName = placeCard.querySelector('.elements__title');
-    placeName.textContent = card.name;
-
-    const placeImage = placeCard.querySelector('.elements__image');
-    placeImage.setAttribute('src', card.link);
-    placeImage.setAttribute('alt', card.name);
-
-    placeCard.querySelector('.elements__like').addEventListener('click', function(event) {
-        event.target.classList.toggle('elements__like_active');
-    });
-
-    placeCard.querySelector('.elements__reset-button').addEventListener('click', function(event) {
-        event.target.closest('.elements__item').remove();
-    });
-
-    placeImage.addEventListener('click', () => {
-        openPopup(cardImgPopup);
-
-        popupImage.src = card.link;
-        popupImage.alt = card.name;
-        popupDescription.textContent = card.name;
-    });
-
-    return placeCard;
-}*/
-
 initialCards.forEach((item) => {
     const card = new Card(item, '#place-template');
     console.log(card);

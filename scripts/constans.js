@@ -33,3 +33,5 @@ const enableValidationForm = {
     errorClass: 'popup__error_visible',
     errorTextClass: '.popup__text-error'
 };
+
+export { initialCards, enableValidationForm }

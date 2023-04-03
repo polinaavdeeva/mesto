@@ -1,3 +1,7 @@
+import Card from "./Card.js";
+import FormValidator from "./FormValidator.js";
+import { initialCards, enableValidationForm } from "./constans.js";
+
 const popupsList = document.querySelectorAll('.popup');
 const editPopup = document.querySelector('.popup_type_edit');
 const addPopup = document.querySelector('.popup_type_add');
@@ -100,3 +104,5 @@ function handleAddFormSubmit(evt) {
 
 const formAddCard = document.querySelector('.popup__add-form');
 formAddCard.addEventListener('submit', handleAddFormSubmit);
+
+export { openPopup, cardImgPopup, popupImage, popupDescription };

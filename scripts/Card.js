@@ -40,7 +40,10 @@ export default class Card {
     }
 
     _deleteCard() {
-        this._cardDeleteButton.closest('.elements__item').remove();
+        //this._cardDeleteButton.closest('.elements__item').remove();
+        this._element.remove();
+        console.log(this._element);
+        this._element = null;
     }
 
     _createImagePopup() {

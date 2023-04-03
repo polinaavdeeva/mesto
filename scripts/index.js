@@ -38,7 +38,6 @@ buttonOpenEditProfilePopup.addEventListener('click', () => {
     jobInput.value = profileInfo.textContent;
     const validateEditForm = new FormValidator(enableValidationForm, editPopup);
     validateEditForm.enableValidation();
-    validateEditForm.setDisabledButton();
     validateEditForm.cleanErrors();
 });
 
@@ -46,7 +45,6 @@ buttonOpenAddCardPopup.addEventListener('click', () => {
     openPopup(addPopup);
     const validateAddForm = new FormValidator(enableValidationForm, addPopup);
     validateAddForm.enableValidation();
-    validateAddForm.setDisabledButton();
     validateAddForm.cleanErrors();
 });
 

@@ -104,7 +104,6 @@ function handleAddFormSubmit(evt) {
     }
 
     placeContainer.prepend(createCard(newCard));
-    formAddCard.reset();
     closePopup(addPopup);
 }
 

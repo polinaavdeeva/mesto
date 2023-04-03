@@ -85,10 +85,13 @@ function handleEditFormSubmit(evt) {
 
 formEditProfile.addEventListener('submit', handleEditFormSubmit);
 
+function createCard(card) {
+    const cardElement = new Card(card, '#place-template', handleOpenImagePopup);
+    return cardElement.generateCard();
+}
+
 initialCards.forEach((item) => {
-    const card = new Card(item, '#place-template', handleOpenImagePopup);
-    const cardElement = card.generateCard();
-    placeContainer.prepend(cardElement);
+    placeContainer.prepend(createCard(item));
 });
 
 function handleAddFormSubmit(evt) {
@@ -100,9 +103,7 @@ function handleAddFormSubmit(evt) {
         link: placePictureInput
     }
 
-    const card = new Card(newCard, '#place-template', handleOpenImagePopup);
-    const cardElement = card.generateCard();
-    placeContainer.prepend(cardElement);
+    placeContainer.prepend(createCard(newCard));
     formAddCard.reset();
     closePopup(addPopup);
 }

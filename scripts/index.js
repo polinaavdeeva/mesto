@@ -19,6 +19,8 @@ const placeFormImage = document.querySelector('.popup__text_type_picture-link');
 const popupImage = document.querySelector('.popup__image');
 const popupDescription = document.querySelector('.popup__description');
 const cardImgPopup = document.querySelector('.popup_type_image-zoom');
+const formsList = document.querySelectorAll('.popup__form');
+
 
 function openPopup(popup) {
     popup.classList.add('popup_opened');
@@ -32,20 +34,30 @@ function handleOpenImagePopup(name, link) {
     openPopup(cardImgPopup);
 }
 
+const validationForms = [];
+
+formsList.forEach((form) => {
+    const validationForm = new FormValidator(enableValidationForm, form);
+    validationForm.enableValidation();
+    validationForms.push(validationForm);
+});
+
+function cleanErrorsByOpen(validationForms) {
+    validationForms.forEach((validationForm) => {
+        validationForm.cleanErrors();
+    });
+}
+
 buttonOpenEditProfilePopup.addEventListener('click', () => {
     openPopup(editPopup);
     nameInput.value = profileName.textContent;
     jobInput.value = profileInfo.textContent;
-    const validateEditForm = new FormValidator(enableValidationForm, editPopup);
-    validateEditForm.enableValidation();
-    validateEditForm.cleanErrors();
+    cleanErrorsByOpen(validationForms);
 });
 
 buttonOpenAddCardPopup.addEventListener('click', () => {
     openPopup(addPopup);
-    const validateAddForm = new FormValidator(enableValidationForm, addPopup);
-    validateAddForm.enableValidation();
-    validateAddForm.cleanErrors();
+    cleanErrorsByOpen(validationForms);
 });
 
 function closePopup(popup) {

@@ -33,23 +33,29 @@ function handleOpenImagePopup(name, link) {
     openPopup(cardImgPopup);
 }
 
-const validationEditForm = new FormValidator(enableValidationForm, editPopup);
-validationEditForm.enableValidation();
+const validators = {};
+
+function applyValidationForFrom(form) {
+    const validationForm = new FormValidator(enableValidationForm, form);
+    validationForm.enableValidation();
+    validators[form.name] = validationForm;
+}
+
+formsList.forEach((form) => {
+    applyValidationForFrom(form);
+});
 
 buttonOpenEditProfilePopup.addEventListener('click', () => {
     openPopup(editPopup);
     nameInput.value = profileName.textContent;
     jobInput.value = profileInfo.textContent;
-    validationEditForm.cleanErrors();
+    validators.editForm.cleanErrors();
 });
-
-const validationAddForm = new FormValidator(enableValidationForm, addPopup);
-validationAddForm.enableValidation();
 
 buttonOpenAddCardPopup.addEventListener('click', () => {
     formAddCard.reset();
     openPopup(addPopup);
-    validationAddForm.cleanErrors();
+    validators.addForm.cleanErrors();
 });
 
 function closePopup(popup) {

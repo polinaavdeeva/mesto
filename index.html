@@ -44,7 +44,7 @@
     <section class="popup popup_type_edit">
         <div class="popup__container">
             <button class="popup__close-button" type="button"></button>
-            <form class="popup__form" name="editForm" novalidate>
+            <form class="popup__form popup__edit-form" name="editForm" novalidate>
                 <h2 class="popup__title">Редактировать профиль</h2>
                 <div class="popup__input-container">
                     <input type="text" id="popup__text-name" placeholder="Имя" name="userName" class="popup__text popup__text_type_name" minlength="2" maxlength="40" required>
@@ -59,7 +59,7 @@
     <section class="popup popup_type_add">
         <div class="popup__container">
             <button class="popup__close-button"></button>
-            <form class="popup__form popup__add-form" novalidate>
+            <form class="popup__form popup__add-form" name="addForm" novalidate>
                 <h2 class="popup__title">Новое место</h2>
                 <div class="popup__input-container">
                     <input type="text" id="popup__text-place-name" placeholder="Название" class="popup__text popup__text_type_place-name" minlength="2" maxlength="30" required>

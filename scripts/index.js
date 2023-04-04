@@ -32,38 +32,24 @@ function handleOpenImagePopup(name, link) {
     popupDescription.textContent = name;
     openPopup(cardImgPopup);
 }
-//в масиве у нас сейчас две формы 
-const validatingForms = [];
 
-function applyValidationForFrom(form) {
-    const validationForm = new FormValidator(enableValidationForm, form);
-    validationForm.enableValidation();
-    validatingForms.push(validationForm);
-}
-
-//применили валидацию к каждой форме,создав экземпляр класса FormValidator 
-formsList.forEach((form) => {
-    applyValidationForFrom(form);
-});
-
-// для очищения ошибкок при открытии конкретной формы
-function cleanErrorsByOpen(validatingForms) {
-    validatingForms.forEach((validatingForm) => {
-        validatingForm.cleanErrors();
-    });
-}
+const validationEditForm = new FormValidator(enableValidationForm, editPopup);
+validationEditForm.enableValidation();
 
 buttonOpenEditProfilePopup.addEventListener('click', () => {
     openPopup(editPopup);
     nameInput.value = profileName.textContent;
     jobInput.value = profileInfo.textContent;
-    cleanErrorsByOpen(validatingForms);
+    validationEditForm.cleanErrors();
 });
+
+const validationAddForm = new FormValidator(enableValidationForm, addPopup);
+validationAddForm.enableValidation();
 
 buttonOpenAddCardPopup.addEventListener('click', () => {
     formAddCard.reset();
     openPopup(addPopup);
-    cleanErrorsByOpen(validatingForms);
+    validationAddForm.cleanErrors();
 });
 
 function closePopup(popup) {

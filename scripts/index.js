@@ -21,7 +21,6 @@ const popupDescription = document.querySelector('.popup__description');
 const cardImgPopup = document.querySelector('.popup_type_image-zoom');
 const formsList = document.querySelectorAll('.popup__form');
 
-
 function openPopup(popup) {
     popup.classList.add('popup_opened');
     document.addEventListener('keydown', closePopupByEsc);
@@ -34,16 +33,16 @@ function handleOpenImagePopup(name, link) {
     openPopup(cardImgPopup);
 }
 
-const validationForms = [];
+const validatingForm = [];
 
-formsList.forEach((form) => {
+function applyValidation(form) {
     const validationForm = new FormValidator(enableValidationForm, form);
     validationForm.enableValidation();
-    validationForms.push(validationForm);
-});
+    validatingForm.push(validationForm);
+}
 
-function cleanErrorsByOpen(validationForms) {
-    validationForms.forEach((validationForm) => {
+function cleanErrorsByOpen(validatingForm) {
+    validatingForm.forEach((validationForm) => {
         validationForm.cleanErrors();
     });
 }
@@ -52,13 +51,15 @@ buttonOpenEditProfilePopup.addEventListener('click', () => {
     openPopup(editPopup);
     nameInput.value = profileName.textContent;
     jobInput.value = profileInfo.textContent;
-    cleanErrorsByOpen(validationForms);
+    applyValidation(editPopup);
+    cleanErrorsByOpen(validatingForm);
 });
 
 buttonOpenAddCardPopup.addEventListener('click', () => {
     formAddCard.reset();
     openPopup(addPopup);
-    cleanErrorsByOpen(validationForms);
+    applyValidation(addPopup);
+    cleanErrorsByOpen(validatingForm);
 });
 
 function closePopup(popup) {

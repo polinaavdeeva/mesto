@@ -43,6 +43,7 @@ const userData = new UserInfo(profileName, profileInfo);
 const editPopupElement = new PopupWithForm(
     editPopup,
     (inputs) => {
+        console.log(inputs.name, inputs.name)
         userData.setUserInfo(inputs['userName'], inputs['aboutUser']);
     }
 );
@@ -51,7 +52,7 @@ editPopupElement.setEventListeners();
 
 const formAddElement = new PopupWithForm(addPopup,
     (inputs) => {
-        const card = createCard(inputs);
+        const card = createCard(inputs['placeName'], inputs['imgLink']);
         sectionElement.addItem(card);
     });
 
@@ -78,15 +79,15 @@ function handleCardClick(name, link) {
     imagePopup.open(name, link);
 }
 
-function createCard(card) {
-    const cardElement = new Card(card, '#place-template', handleCardClick);
+function createCard(name, link) {
+    const cardElement = new Card(name, link, '#place-template', handleCardClick);
     return cardElement.generateCard();
 }
 
 const sectionElement = new Section({
     items: initialCards,
     renderer: (item) => {
-        const card = createCard(item);
+        const card = createCard(item.name, item.link);
         sectionElement.addItem(card);
     }
 }, placeContainer);

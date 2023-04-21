@@ -7,7 +7,7 @@ export default class PopupWithImage extends Popup {
         this._description = descriprion;
     }
 
-    open(image, descriprion) {
+    open(descriprion, image) {
         super.open();
         this._image.src = image;
         this._description.textContent = descriprion;

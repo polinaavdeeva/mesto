@@ -73,7 +73,7 @@ buttonOpenAddCardPopup.addEventListener('click', () => {
     validators.addForm.cleanErrors();
 });
 
-const imagePopup = new PopupWithImage(cardImgPopup, popupImage, popupDescription);
+const imagePopup = new PopupWithImage(cardImgPopup);
 imagePopup.setEventListeners();
 
 function handleCardClick(name, link) {

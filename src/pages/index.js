@@ -26,6 +26,10 @@ const popupDescription = document.querySelector('.popup__description');
 const cardImgPopup = document.querySelector('.popup_type_image-zoom');
 const formsList = document.querySelectorAll('.popup__form');
 const formAddCard = document.querySelector('.popup__add-form');
+const editAvatarPopup = document.querySelector('.popup_type_avatar');
+const formEditAvatar = document.querySelector('.popup__avatar-form');
+const profileAvatar = document.querySelector('.profile__avatar-overlay');
+const profileAvatarImg = document.querySelector('.profile__avatar');
 
 const validators = {};
 
@@ -39,7 +43,23 @@ formsList.forEach((form) => {
     applyValidationForFrom(form);
 });
 
-const userData = new UserInfo(profileName, profileInfo);
+const userData = new UserInfo(profileName, profileInfo, profileAvatarImg);
+
+const editAvatarElement = new PopupWithForm(
+    editAvatarPopup,
+    (input) => {
+        userData.setUserAvatar(input['avatarLink']);
+        console.log(profileAvatarImg.src);
+    }
+);
+
+editAvatarElement.setEventListeners();
+
+profileAvatar.addEventListener('click', () => {
+    formEditAvatar.reset();
+    editAvatarElement.open();
+    validators.avatarForm.cleanErrors();
+});
 
 const editPopupElement = new PopupWithForm(
     editPopup,
@@ -73,7 +93,7 @@ buttonOpenAddCardPopup.addEventListener('click', () => {
     validators.addForm.cleanErrors();
 });
 
-const imagePopup = new PopupWithImage(cardImgPopup, popupImage, popupDescription);
+const imagePopup = new PopupWithImage(cardImgPopup);
 imagePopup.setEventListeners();
 
 function handleCardClick(name, link) {

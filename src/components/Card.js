@@ -1,9 +1,10 @@
 export default class Card {
-    constructor(name, link, templateSelector, handleCardClick) {
+    constructor(name, link, templateSelector, handleCardClick, handleDeleteCard) {
         this._name = name;
         this._link = link;
         this._templateSelector = templateSelector;
         this._handleCardClick = handleCardClick;
+        this._handleDeleteCard = handleDeleteCard;
     }
 
     _getTemplate() {
@@ -38,7 +39,7 @@ export default class Card {
         this._cardLikeButton.classList.toggle('elements__like_active');
     }
 
-    _deleteCard() {
+    deleteCard() {
         this._element.remove();
         this._element = null;
     }
@@ -49,7 +50,7 @@ export default class Card {
         });
 
         this._cardDeleteButton.addEventListener('click', () => {
-            this._deleteCard();
+            this._handleDeleteCard();
         });
 
         this._placeImage.addEventListener('click', () => {

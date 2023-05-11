@@ -5,6 +5,7 @@ import Section from "../components/Section.js";
 import UserInfo from "../components/UserInfo.js";
 import FormValidator from "../components/FormValidator.js";
 import PopupWithConfirmation from "../components/PopupWithConfirmation.js";
+import Api from "../components/Api.js";
 import { initialCards, enableValidationForm } from "../components/constans.js";
 import "./index.css";
 
@@ -44,7 +45,13 @@ const userData = new UserInfo(profileName, profileInfo, profileAvatarImg);
 const editAvatarElement = new PopupWithForm(
     editAvatarPopup,
     (input) => {
-        userData.setUserAvatar(input['avatarLink']);
+        api.editUserAvatar(input)
+            .then((response) => {
+                userData.setUserAvatar(response.avatar);
+            })
+            .catch((error) => {
+                console.log(`Ошибка ${error}`)
+            })
     }
 );
 
@@ -59,7 +66,17 @@ profileAvatar.addEventListener('click', () => {
 const editPopupElement = new PopupWithForm(
     editPopup,
     (inputs) => {
-        userData.setUserInfo(inputs['userName'], inputs['aboutUser']);
+        editPopupElement.loadingButtonText(true, 'Сохранение...')
+        api.editUserInfo(inputs)
+            .then((response) => {
+                userData.setUserInfo(response.name, response.about);
+            })
+            .catch((error) => {
+                console.log(`Ошибка ${error}`)
+            })
+            .finally(() => {
+                editPopupElement.loadingButtonText(false, 'Сохранить')
+            })
     }
 );
 
@@ -67,8 +84,18 @@ editPopupElement.setEventListeners();
 
 const formAddElement = new PopupWithForm(addPopup,
     (inputs) => {
-        const card = createCard(inputs['placeName'], inputs['imgLink']);
-        sectionElement.addItem(card);
+        formAddElement.loadingButtonText(true, 'Создание...')
+        api.addNewCard(inputs)
+            .then((response) => {
+                const card = createCard(response);
+                sectionElement.addItem(card);
+            })
+            .catch((error) => {
+                console.log(`Ошибка ${error}`)
+            })
+            .finally(() =>
+                formAddElement.loadingButtonText(false, 'Создать')
+            )
     });
 
 formAddElement.setEventListeners();
@@ -94,28 +121,76 @@ function handleCardClick(name, link) {
     imagePopup.open(name, link);
 }
 
-const confirmationPopup = new PopupWithConfirmation(
-    deleteCardPopup,
-    (card) => {
-        card.deleteCard();
-    });
+const confirmationPopup = new PopupWithConfirmation(deleteCardPopup);
 
 confirmationPopup.setEventListeners();
 
-function createCard(name, link) {
-    const cardElement = new Card(name, link, '#place-template', handleCardClick,
-        () => {
-            confirmationPopup.open(cardElement);
+const api = new Api({
+    baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-65',
+    headers: {
+        authorization: 'be897a2d-f774-4214-8213-bbd45b161de7',
+        'Content-Type': 'application/json'
+    }
+});
+
+//let userId = null;
+
+Promise.all([api.getUserInfo(), api.getInitalCards()])
+    .then(([userInfo, cards]) => {
+        userId = userInfo._id;
+        userData.setUserInfo(userInfo.name, userInfo.about);
+        userData.setUserAvatar(userInfo.avatar);
+        sectionElement.renderer(cards);
+        //console.log(userInfo)
+        userId = userInfo._id;
+    })
+    .catch((error) => {
+        console.log(`Ошибка ${error}`)
+    });
+
+let userId = null;
+
+function createCard(data) {
+    const cardElement = new Card(data, userId, '#place-template', handleCardClick,
+        (id) => {
+            confirmationPopup.open();
+            confirmationPopup.setSubmitMethod(() => {
+                api.deleteCard(id)
+                    .then(() => {
+                        cardElement.removeCard();
+                    })
+                    .catch((error) => {
+                        console.log(`Ошибка ${error}`)
+                    })
+            })
+        },
+        (id) => {
+            if (cardElement.isCardLiked()) {
+                api.deleteLike(id)
+                    .then((response) => {
+                        cardElement.setNewLikes(response.likes);
+                    })
+                    .catch((error) => {
+                        console.log(`Ошибка ${error}`)
+                    })
+            } else {
+                api.putLike(id)
+                    .then((response) => {
+                        cardElement.setNewLikes(response.likes);
+                    })
+                    .catch((error) => {
+                        console.log(`Ошибка ${error}`)
+                    })
+            }
         });
     return cardElement.generateCard();
 }
 
 const sectionElement = new Section({
-    items: initialCards,
     renderer: (item) => {
-        const card = createCard(item.name, item.link);
+        const card = createCard(item);
         sectionElement.addItem(card);
     }
 }, placeContainer);
 
-sectionElement.renderer();
+//sectionElement.renderer();

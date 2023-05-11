@@ -1,0 +1,16 @@
+.profile__avatar-update {
+    margin-right: 30px;
+    position: relative;
+}
+
+@media screen and (max-width: 767px) {
+    .profile__avatar-update {
+        margin-right: 15px;
+    }
+}
+
+@media screen and (max-width: 550px) {
+    .profile__avatar-update {
+        margin-right: 0;
+    }
+}

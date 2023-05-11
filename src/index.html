@@ -14,13 +14,16 @@
     </header>
     <main class="content">
         <section class="profile">
-            <img class="profile__avatar" src="<%=require('./images/avatar.jpg')%>" alt="Аватарка профиля">
+            <div class="profile__avatar-update">
+                <img class="profile__avatar" src="#" alt="Аватарка профиля">
+                <div class="profile__avatar-overlay"></div>
+            </div>
             <div class="profile__info">
                 <div class="profile__title-block">
-                    <h1 class="profile__info-title">Жак-Ив Кусто</h1>
+                    <h1 class="profile__info-title"></h1>
                     <button class="profile__edit-button" type="button"></button>
                 </div>
-                <p class="profile__info-subtitle">Исследователь океана</p>
+                <p class="profile__info-subtitle"></p>
             </div>
             <button class="profile__add-button" type="button"></button>
         </section>
@@ -32,7 +35,10 @@
                         <img class="elements__image" src="#" alt="#">
                         <div class="elements__title-container">
                             <p class="elements__title"></p>
-                            <button class="elements__like"></button>
+                            <div class="elements__like-info">
+                                <button class="elements__like"></button>
+                                <p class="elements__like-nums"></p>
+                            </div>
                         </div>
                     </li>
                 </template>
@@ -75,6 +81,28 @@
             <button class="popup__close-button"></button>
             <img class="popup__image" src="#" alt="#">
             <p class="popup__description"></p>
+        </div>
+    </section>
+    <section class="popup popup_type_avatar">
+        <div class="popup__container">
+            <button class="popup__close-button"></button>
+            <form class="popup__form popup__avatar-form" name="avatarForm" novalidate>
+                <h2 class="popup__title">Обновить аватар</h2>
+                <div class="popup__input-container">
+                    <input type="url" id="popup__text-avatar-link" placeholder="Ссылка на аватар" name="avatarLink" class="popup__text popup__text_type_avatar-link" required>
+                    <span class="popup__text-error popup__text-avatar-link-error"></span>
+                </div>
+                <button type="submit" class="popup__save-button">Сохранить</button>
+            </form>
+        </div>
+    </section>
+    <section class="popup popup_type_delete">
+        <div class="popup__container">
+            <button class="popup__close-button"></button>
+            <form class="popup__form popup__detele-form" name="deleteCardForm" novalidate>
+                <h2 class="popup__title">Вы уверены?</h2>
+                <button type="submit" class="popup__save-button">Да</button>
+            </form>
         </div>
     </section>
 </body>

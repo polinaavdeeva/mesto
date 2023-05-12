@@ -6,7 +6,7 @@ import UserInfo from "../components/UserInfo.js";
 import FormValidator from "../components/FormValidator.js";
 import PopupWithConfirmation from "../components/PopupWithConfirmation.js";
 import Api from "../components/Api.js";
-import { initialCards, enableValidationForm } from "../components/constans.js";
+import { enableValidationForm } from "../utils/constans.js";
 import "./index.css";
 
 const editPopup = document.querySelector('.popup_type_edit');
@@ -45,7 +45,7 @@ const userData = new UserInfo(profileName, profileInfo, profileAvatarImg);
 const editAvatarElement = new PopupWithForm(
     editAvatarPopup,
     (input) => {
-        api.editUserAvatar(input)
+        return api.editUserAvatar(input)
             .then((response) => {
                 userData.setUserAvatar(response.avatar);
             })
@@ -66,16 +66,12 @@ profileAvatar.addEventListener('click', () => {
 const editPopupElement = new PopupWithForm(
     editPopup,
     (inputs) => {
-        editPopupElement.loadingButtonText(true, 'Сохранение...')
-        api.editUserInfo(inputs)
+        return api.editUserInfo(inputs)
             .then((response) => {
                 userData.setUserInfo(response.name, response.about);
             })
             .catch((error) => {
                 console.log(`Ошибка ${error}`)
-            })
-            .finally(() => {
-                editPopupElement.loadingButtonText(false, 'Сохранить')
             })
     }
 );
@@ -84,8 +80,8 @@ editPopupElement.setEventListeners();
 
 const formAddElement = new PopupWithForm(addPopup,
     (inputs) => {
-        formAddElement.loadingButtonText(true, 'Создание...')
-        api.addNewCard(inputs)
+
+        return api.addNewCard(inputs)
             .then((response) => {
                 const card = createCard(response);
                 sectionElement.addItem(card);
@@ -93,9 +89,6 @@ const formAddElement = new PopupWithForm(addPopup,
             .catch((error) => {
                 console.log(`Ошибка ${error}`)
             })
-            .finally(() =>
-                formAddElement.loadingButtonText(false, 'Создать')
-            )
     });
 
 formAddElement.setEventListeners();
@@ -155,7 +148,7 @@ function createCard(data) {
         (id) => {
             confirmationPopup.open();
             confirmationPopup.setSubmitMethod(() => {
-                api.deleteCard(id)
+                return api.deleteCard(id)
                     .then(() => {
                         cardElement.removeCard();
                     })
